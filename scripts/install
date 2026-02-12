@@ -42,22 +42,30 @@ ynh_config_add --template="../conf/configuration.py" --destination="$install_dir
 chmod 400 "$install_dir/fiduswriter/configuration.py"
 chown "$app:$app" "$install_dir/fiduswriter/configuration.py"
 
+ynh_script_progression "Preparing UV..."
+    export PATH="$install_dir/.uv:$PATH"
+    export UV_PYTHON_INSTALL_DIR="$install_dir/.python_runtime"
+    export UV_CACHE_DIR="$install_dir/.uv_cache"
+    echo "PATH=$install_dir/bin:\$PATH" >> $install_dir/.bashrc 
+    echo "UV_PYTHON_INSTALL_DIR=$install_dir/.python_runtime" >> $install_dir/.bashrc 
+    echo "UV_CACHE_DIR=$install_dir/.uv_cache" >> $install_dir/.bashrc
+
 ynh_script_progression "Installing $app's dependencies..."
 
 pushd $install_dir
-    python -m venv venv
-    source venv/bin/activate
-    echo "source $install_dir/venv/bin/activate" >> $install_dir/.bashrc
+    uv venv "$install_dir/.venv" --python 3.13
+    echo "source $install_dir/.venv/bin/activate" >> $install_dir/.bashrc
+    source $install_dir/.venv/bin/activate
+    uv pip install --upgrade pip setuptools wheel gunicorn gevent 2>&1
     cd fiduswriter
-    pip install wheel
-    pip install -r requirements.txt
-    pip install -r postgresql-requirements.txt
-    pip install gunicorn gevent
+    uv pip install -r requirements.txt
+    uv pip install -r postgresql-requirements.txt
+
     python manage.py migrate
     python manage.py transpile --noinput
     python manage.py collectstatic --noinput
     #DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
-    pip install django-auth-ldap
+    uv pip install django-auth-ldap
     deactivate
 popd
 

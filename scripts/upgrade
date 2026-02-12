@@ -41,20 +41,27 @@ ynh_config_add --template="../conf/configuration.py" --destination="$install_dir
 chmod 400 "$install_dir/fiduswriter/configuration.py"
 chown "$app:$app" "$install_dir/fiduswriter/configuration.py"
 
+ynh_script_progression "Upgrading uv..."
+
+    ynh_setup_source --dest_dir="$install_dir/.uv" --source_id="uv"
+    chmod +x "$install_dir/.uv/uv"
+    export PATH="$install_dir/.uv:$PATH"
+    export UV_PYTHON_INSTALL_DIR="$install_dir/.python_runtime"
+    export UV_CACHE_DIR="$install_dir/.uv_cache"
 
 ynh_script_progression "Updating $app's dependencies..."
 
 pushd $install_dir
-    source venv/bin/activate
+    source .venv/bin/activate
     cd fiduswriter
-    pip install -U -r requirements.txt
-    pip install -U -r postgresql-requirements.txt
-    pip install -U gunicorn gevent
+    uv pip install -U -r requirements.txt
+    uv pip install -U -r postgresql-requirements.txt
+    uv pip install -U gunicorn gevent
     python manage.py migrate
     python manage.py transpile --noinput
     python manage.py collectstatic --noinput
     #DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
-    pip install -U django-auth-ldap
+    uv pip install -U django-auth-ldap
     deactivate
 popd
 
