@@ -48,8 +48,9 @@ pushd $install_dir
     python -m venv venv
     source venv/bin/activate
     echo "source $install_dir/venv/bin/activate" >> $install_dir/.bashrc
-    pip install -r fiduswriter/requirements.txt
-    pip install -r fiduswriter/postgresql-requirements.txt
+    cd fiduswriter
+    pip install -r requirements.txt
+    pip install -r postgresql-requirements.txt
     pip install gunicorn gevent
     python manage.py migrate
     python manage.py transpile --noinput

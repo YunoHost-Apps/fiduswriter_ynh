@@ -46,8 +46,9 @@ ynh_script_progression "Updating $app's dependencies..."
 
 pushd $install_dir
     source venv/bin/activate
-    pip install -U -r fiduswriter/requirements.txt
-    pip install -U -r fiduswriter/postgresql-requirements.txt
+    cd fiduswriter
+    pip install -U -r requirements.txt
+    pip install -U -r postgresql-requirements.txt
     pip install -U gunicorn gevent
     python manage.py migrate
     python manage.py transpile --noinput
