@@ -60,7 +60,7 @@ ram.runtime = "50M"
     type = "password"
 
     [install.is_free]
-    ask.en = "This determines whether there is a star labeled "Free" on the login page?"
+    ask.en = "This determines whether there is a star labeled **Free** on the login page?"
     type = "boolean"
     default = "0"
 
