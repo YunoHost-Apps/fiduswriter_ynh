@@ -75,6 +75,7 @@ ram.runtime = "50M"
     [resources.sources.main]
     url = "https://github.com/fiduswriter/fiduswriter/archive/refs/tags/v4.0.17.tar.gz"
     sha256 = "22232a59c7213caea3151d33f6e0b93628488a3942b344106c8adadf075fcffd"
+    in_subdir = true
 
     autoupdate.strategy = "latest_github_tag"
 
