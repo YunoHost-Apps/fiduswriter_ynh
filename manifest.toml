@@ -114,7 +114,7 @@ ram.runtime = "50M"
     [resources.ports]
 
     [resources.apt]
-    packages = "postgresql, postgresql-contrib, python3-pip, python3-venv, python3-dev, redis-server, libjpeg-dev, zlib1g-dev, gettext, libpq-dev"
+    packages = "postgresql, postgresql-contrib, python3-pip, python3-venv, python3-dev, redis-server, libjpeg-dev, zlib1g-dev, gettext, libpq-dev, libldap2-dev, libsasl2-dev, rsync"
 
     [resources.database]
     type = "postgresql"
