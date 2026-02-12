@@ -15,7 +15,7 @@ ExecStart=__INSTALL_DIR__/venv/bin/gunicorn \
     --worker-connections 1000 \
     --timeout 120 \
     --bind unix:__INSTALL_DIR__/gunicorn.sock \
-    __PROJECT_NAME__.wsgi:application
+    fiduswriter.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
