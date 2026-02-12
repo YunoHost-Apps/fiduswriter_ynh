@@ -61,7 +61,8 @@ pushd $install_dir
     cd fiduswriter
     ynh_hide_warnings uv pip install -r requirements.txt
     ynh_hide_warnings uv pip install -r postgresql-requirements.txt
-
+    mkdir static-libs
+    mkdir static-transpile
     python manage.py migrate
     python manage.py transpile
     python manage.py collectstatic --noinput
