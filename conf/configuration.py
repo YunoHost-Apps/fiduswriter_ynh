@@ -1,6 +1,6 @@
 import os
 import ldap
-from django_auth_ldap.config import LDAPSearch
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
 import django.core.mail.backends.smtp
 
 #############################################
@@ -93,15 +93,15 @@ IS_FREE = __IS_FREE__
 MANAGERS = ADMINS
 
 # Email Configuration
-EMAIL_BACKEND = django.core.mail.backends.smtp.EmailBackend
-EMAIL_HOST = __DOMAIN__
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "__DOMAIN__"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = __APP__
+EMAIL_HOST_USER = "__APP__"
 EMAIL_HOST_PASSWORD = "__MAIL_PWD__"
-DEFAULT_FROM_EMAIL = __APP__@__DOMAIN__
-SERVER_EMAIL = __APP__@__DOMAIN__
+DEFAULT_FROM_EMAIL = "__APP__@__DOMAIN__"
+SERVER_EMAIL = "__APP__@__DOMAIN__"
 
 # FOOTER_LINKS = [
 #     {
@@ -296,3 +296,40 @@ CACHES = {
 # Use Redis for sessions
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
+
+# Authentication
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 12,
+        }
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+
