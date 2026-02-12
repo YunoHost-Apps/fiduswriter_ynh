@@ -40,11 +40,6 @@ ram.runtime = "50M"
     [install.domain]
     type = "domain"
 
-    [install.path]
-    # this is a generic question - ask strings are automatically handled by YunoHost's core
-    type = "path"
-    default = "/fiduswriter"
-
     [install.init_main_permission]
     type = "group"
     default = "visitors"
@@ -63,6 +58,16 @@ ram.runtime = "50M"
     help.en = "Use the help field to add an information for the admin about this question."
     help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
     type = "password"
+
+    [install.is_free]
+    ask.en = "This determines whether there is a star labeled "Free" on the login page?"
+    type = "boolean"
+    default = "0"
+
+    [install.registration_open]
+    ask.en = "Whether anyone surfing to the site can open an account with a login/password"
+    type = "boolean"
+    default = "0"
 
 [resources]
     [resources.sources]
