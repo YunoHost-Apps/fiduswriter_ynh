@@ -53,14 +53,14 @@ ynh_script_progression "Updating $app's dependencies..."
 pushd $install_dir
     source .venv/bin/activate
     cd fiduswriter
-    uv pip install -U -r requirements.txt
-    uv pip install -U -r postgresql-requirements.txt
-    uv pip install -U gunicorn gevent
+    ynh_hide_warnings uv pip install -U -r requirements.txt
+    ynh_hide_warnings uv pip install -U -r postgresql-requirements.txt
+    ynh_hide_warnings uv pip install -U gunicorn gevent
     python manage.py migrate
-    python manage.py transpile --noinput
+    python manage.py transpile
     python manage.py collectstatic --noinput
     #DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
-    uv pip install -U django-auth-ldap
+    ynh_hide_warnings uv pip install -U django-auth-ldap
     deactivate
 popd
 
