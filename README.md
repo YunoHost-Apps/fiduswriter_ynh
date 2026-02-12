@@ -21,7 +21,8 @@ an online collaborative editor for academics
 
 
 ## Screenshots
-![Screenshot of Fidus Writer](./doc/screenshots/example.jpg)
+![Screenshot of Fidus Writer](./doc/screenshots/Nationalization_of_natural_resources_in_Mexico_and_Norway_-_Fidus_Writer.png)
+![Screenshot of Fidus Writer](./doc/screenshots/Nationalization_of_natural_resources_in_Mexico_and_Norway_-_Fidus_Writer_1.png)
 
 ## 📦 Developer info
 
