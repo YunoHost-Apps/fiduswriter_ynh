@@ -79,11 +79,11 @@ REGISTRATION_OPEN = __REGISTRATION_OPEN__
 
 # Whether user's can login using passwords (if not, they will only be able to
 # sign in using social accounts).
-PASSWORD_LOGIN = True
+PASSWORD_LOGIN = __PASSWORD_LOGIN__
 
 # Whether anyone surfing to the site can open an account or login with a
 # socialaccount.
-SOCIALACCOUNT_OPEN = True
+SOCIALACCOUNT_OPEN = __SOCIALACCOUNT_OPEN__
 
 # ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
@@ -331,12 +331,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-#ACCOUNT_EMAIL_REQUIRED = True
-#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-#ACCOUNT_USERNAME_REQUIRED = False
-#ACCOUNT_AUTHENTICATION_METHOD = 'email'
-#ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 
 AUTHENTICATION_BACKENDS = [
     'django_auth_ldap.backend.LDAPBackend',
