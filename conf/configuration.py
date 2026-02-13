@@ -72,7 +72,7 @@ PORTS = [
 # SECURITY WARNING: Setting this to True in production environments could expose your server
 LISTEN_TO_ALL_INTERFACES = False
 
-ADMINS = (("_ADMIN__", "__ADMIN_MAIL__"),)
+ADMINS = (("__ADMIN__", "__ADMIN_MAIL__"),)
 
 # Whether anyone surfing to the site can open an account with a login/password.
 REGISTRATION_OPEN = __REGISTRATION_OPEN__
