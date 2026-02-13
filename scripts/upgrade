@@ -55,11 +55,10 @@ pushd $install_dir
     cd fiduswriter
     ynh_hide_warnings uv pip install -r requirements.txt
     ynh_hide_warnings uv pip install -r postgresql-requirements.txt
-    ynh_hide_warnings uv pip install -U gunicorn uvicorn psycopg django_redis django-auth-ldap
+    ynh_hide_warnings uv pip install -U pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap
     python manage.py migrate
     python manage.py transpile
     python manage.py collectstatic --noinput
-    #DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
     deactivate
 popd
 
