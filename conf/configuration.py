@@ -338,3 +338,23 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+# Language and timezone
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+# Available languages
+LANGUAGES = [
+    ('en', 'English'),
+    ('de', 'German'),
+    ('fr', 'French'),
+    ('es', 'Spanish'),
+]
+
+# Locale paths
+LOCALE_PATHS = [
+    '__INSTALL_DIR__/fiduswriter/locale',
+]
