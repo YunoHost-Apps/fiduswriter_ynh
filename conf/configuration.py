@@ -276,6 +276,11 @@ AUTH_LDAP_BIND_DN=""
 AUTH_LDAP_BIND_PASSWORD=""
 AUTH_LDAP_USER_SEARCH_BASE_DN="ou=users,dc=yunohost,dc=org"
 AUTH_LDAP_USER_SEARCH_FILTER_STR="(&(|(objectclass=posixAccount))(uid=%(user)s)(permission=cn=__APP__.main,ou=permission,dc=yunohost,dc=org))"
+AUTH_LDAP_USER_SEARCH = LDAPSearch(
+    "ou=users,dc=yunohost,dc=org",
+    ldap.SCOPE_SUBTREE,
+    "(mail=%(user)s)"
+)
 
 # Redis conf
 CACHES = {
@@ -333,3 +338,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 
+AUTHENTICATION_BACKENDS = [
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
