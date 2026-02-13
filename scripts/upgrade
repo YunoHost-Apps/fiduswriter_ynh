@@ -53,8 +53,8 @@ ynh_script_progression "Updating $app's dependencies..."
 pushd $install_dir
     source .venv/bin/activate
     cd fiduswriter
-    ynh_hide_warnings uv pip install -U -r requirements.txt
-    ynh_hide_warnings uv pip install -U -r postgresql-requirements.txt
+    ynh_hide_warnings uv pip install -r requirements.txt
+    ynh_hide_warnings uv pip install -r postgresql-requirements.txt
     ynh_hide_warnings uv pip install -U gunicorn uvicorn psycopg django_redis django-auth-ldap
     python manage.py migrate
     python manage.py transpile
