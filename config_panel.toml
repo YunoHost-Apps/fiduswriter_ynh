@@ -1,0 +1,28 @@
+# https://yunohost.org/en/packaging_config_panels
+# https://github.com/YunoHost/example_ynh/blob/master/config_panel.toml.example
+
+version = "1.0"
+
+[main]
+name.en = "Main configuration"
+name.fr = "Configuration principale"
+services = ["__APP__"]
+
+    [main.config]
+    name = "Configuration Options"
+
+        [main.config.is_free]
+        ask = "This determines whether there is a star labeled **Free** on the login page?"
+        type = "boolean"
+        yes = "1"
+        no = "0"
+        help = "This determines whether there is a star labeled **Free** on the login page?"
+        bind = "is_free:/var/www/__APP__/fiduswriter/configuration.py"
+
+        [main.config.registration_open]
+        ask = "Whether anyone surfing to the site can open an account with a login/password"
+        type = "boolean"
+        yes = "1"
+        no = "0"
+        help = "Whether anyone surfing to the site can open an account with a login/password"
+        bind = "registration_open:/var/www/__APP__/fiduswriter/configuration.py"
