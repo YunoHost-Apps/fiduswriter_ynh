@@ -59,7 +59,7 @@ ram.runtime = "50M"
     [install.password_login]
     ask.en = "Enable password-based login"
     type = "boolean"
-    default = "0"
+    default = "1"
 
     [install.socialaccount_open]
     ask.en = "Enable social account login"
