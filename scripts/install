@@ -70,6 +70,7 @@ pushd $install_dir
     python manage.py transpile
     python manage.py collectstatic --noinput
     DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
+    python manage.py setup
     deactivate
 popd
 
