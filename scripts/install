@@ -58,7 +58,7 @@ pushd $install_dir
     ynh_hide_warnings uv venv "$install_dir/.venv" --python 3.13
     echo "source $install_dir/.venv/bin/activate" >> $install_dir/.bashrc
     source $install_dir/.venv/bin/activate
-    ynh_hide_warnings uv pip install --upgrade pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap
+    ynh_hide_warnings uv pip install --upgrade pip setuptools wheel granian psycopg django_redis django-auth-ldap
     cd fiduswriter
     ynh_hide_warnings uv pip install -r requirements.txt
     ynh_hide_warnings uv pip install -r postgresql-requirements.txt
@@ -83,7 +83,7 @@ ynh_config_add_nginx
 
 ynh_config_add_systemd
 
-yunohost service add "$app" --description="Gunicorn for $app" --log="/var/log/$app/$app.log"
+yunohost service add "$app" --description="granian for $app" --log="/var/log/$app/$app.log"
 
 ynh_config_add_logrotate
 
