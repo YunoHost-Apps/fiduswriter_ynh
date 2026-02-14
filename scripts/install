@@ -47,27 +47,27 @@ ynh_script_progression "Preparing UV..."
     export PATH="$install_dir/.uv:$PATH"
     export UV_PYTHON_INSTALL_DIR="$install_dir/.python_runtime"
     export UV_CACHE_DIR="$install_dir/.uv_cache"
-    echo "PATH=$install_dir/bin:\$PATH" >> $install_dir/.bashrc 
+    ynh_exec_as_app echo "PATH=$install_dir/bin:\$PATH" >> $install_dir/.bashrc 
     echo "UV_PYTHON_INSTALL_DIR=$install_dir/.python_runtime" >> $install_dir/.bashrc 
     echo "UV_CACHE_DIR=$install_dir/.uv_cache" >> $install_dir/.bashrc
 
 ynh_script_progression "Installing $app's dependencies..."
 
 pushd $install_dir
-    ynh_hide_warnings uv venv "$install_dir/.venv" --python 3.13
+    ynh_exec_as_app uv venv "$install_dir/.venv" --python 3.12
     echo "source $install_dir/.venv/bin/activate" >> $install_dir/.bashrc
     source $install_dir/.venv/bin/activate
-    ynh_hide_warnings uv pip install --upgrade pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap
+    ynh_exec_as_app uv pip install --upgrade pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap
     cd fiduswriter
-    ynh_hide_warnings uv pip install -r requirements.txt
-    ynh_hide_warnings uv pip install -r postgresql-requirements.txt
+    ynh_exec_as_app uv pip install -r requirements.txt
+    ynh_exec_as_app uv pip install -r postgresql-requirements.txt
     mkdir static-libs
     mkdir static-transpile
-    python manage.py migrate
-    python manage.py transpile
-    python manage.py collectstatic --noinput
-    DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
-    python manage.py setup
+    ynh_exec_as_app python manage.py migrate
+    ynh_exec_as_app python manage.py transpile
+    ynh_exec_as_app python manage.py collectstatic --noinput
+    ynh_exec_as_app DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
+    ynh_exec_as_app python manage.py setup
     deactivate
 popd
 
