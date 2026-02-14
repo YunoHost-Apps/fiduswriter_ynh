@@ -59,7 +59,6 @@ pushd $install_dir
     python manage.py migrate
     python manage.py transpile
     python manage.py collectstatic --noinput
-    python manage.py clear_cache
     deactivate
 popd
 
