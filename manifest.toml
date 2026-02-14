@@ -43,19 +43,12 @@ ram.runtime = "50M"
     type = "group"
     default = "visitors"
 
-    [install.language]
-    ask.en = "Choose the application language"
-    ask.fr = "Choisissez la langue de l'application"
-    type = "select"
-    choices = ["fr", "en"]
-    default = "fr"
-
     [install.admin]
     type = "user"
 
     [install.password]
-    help.en = "Use the help field to add an information for the admin about this question."
-    help.fr = "Utilisez le champ aide pour ajouter une information à l'intention de l'administrateur à propos de cette question."
+    help.en = "Admin password."
+    help.fr = "Mot de passe de l'administrateur."
     type = "password"
 
     [install.is_free]
@@ -64,10 +57,20 @@ ram.runtime = "50M"
     default = "0"
 
     [install.registration_open]
-    ask.en = "Whether anyone surfing to the site can open an account with a login/password"
+    ask.en = "Allow new user registration"
     type = "boolean"
     default = "0"
 
+    [install.password_login]
+    ask.en = "Enable password-based login"
+    type = "boolean"
+    default = "1"
+
+    [install.socialaccount_open]
+    ask.en = "Enable social account login"
+    type = "boolean"
+    default = "0"
+    
 [resources]
     [resources.sources]
 
@@ -103,6 +106,7 @@ ram.runtime = "50M"
     [resources.install_dir]
 
     [resources.data_dir]
+    subdirs = ['media']
 
     [resources.permissions]
     main.url = "/"

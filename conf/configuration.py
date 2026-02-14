@@ -72,18 +72,18 @@ PORTS = [
 # SECURITY WARNING: Setting this to True in production environments could expose your server
 LISTEN_TO_ALL_INTERFACES = False
 
-ADMINS = (("_ADMIN__", "__ADMIN_MAIL__"),)
+ADMINS = (("__ADMIN__", "__ADMIN_MAIL__"),)
 
 # Whether anyone surfing to the site can open an account with a login/password.
 REGISTRATION_OPEN = __REGISTRATION_OPEN__
 
 # Whether user's can login using passwords (if not, they will only be able to
 # sign in using social accounts).
-PASSWORD_LOGIN = True
+PASSWORD_LOGIN = __PASSWORD_LOGIN__
 
 # Whether anyone surfing to the site can open an account or login with a
 # socialaccount.
-SOCIALACCOUNT_OPEN = True
+SOCIALACCOUNT_OPEN = __SOCIALACCOUNT_OPEN__
 
 # ACCOUNT_EMAIL_VERIFICATION = 'optional'
 
@@ -322,6 +322,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.gzip.GZipMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -332,14 +333,28 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
-
 AUTHENTICATION_BACKENDS = [
     'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Language and timezone
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+# Available languages
+LANGUAGES = [
+    ('en', 'English'),
+    ('de', 'German'),
+    ('fr', 'French'),
+    ('es', 'Spanish'),
+]
+
+# Locale paths
+LOCALE_PATHS = [
+    '__INSTALL_DIR__/fiduswriter/locale',
 ]

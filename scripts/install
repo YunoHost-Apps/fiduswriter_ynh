@@ -43,9 +43,6 @@ ynh_config_add --template="../conf/configuration.py" --destination="$install_dir
 chmod 400 "$install_dir/fiduswriter/configuration.py"
 chown "$app:$app" "$install_dir/fiduswriter/configuration.py"
 
-mkdir -p $data_dir/media
-chown -R "$app:$app" $data_dir/media
-
 ynh_script_progression "Preparing UV..."
     export PATH="$install_dir/.uv:$PATH"
     export UV_PYTHON_INSTALL_DIR="$install_dir/.python_runtime"
@@ -69,7 +66,8 @@ pushd $install_dir
     python manage.py migrate
     python manage.py transpile
     python manage.py collectstatic --noinput
-    #DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
+    DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
+    python manage.py setup
     deactivate
 popd
 
