@@ -54,22 +54,22 @@ ram.runtime = "50M"
     [install.is_free]
     ask.en = "This determines whether there is a star labeled **Free** on the login page?"
     type = "boolean"
-    default = "0"
+    default = false
 
     [install.registration_open]
     ask.en = "Allow new user registration"
     type = "boolean"
-    default = "0"
+    default = false
 
     [install.password_login]
     ask.en = "Enable password-based login"
     type = "boolean"
-    default = "1"
+    default = true
 
     [install.socialaccount_open]
     ask.en = "Enable social account login"
     type = "boolean"
-    default = "0"
+    default = false
     
 [resources]
     [resources.sources]
@@ -123,4 +123,4 @@ ram.runtime = "50M"
     type = "postgresql"
 
     [resources.nodejs]
-    version = "22"
+    version = "24"
