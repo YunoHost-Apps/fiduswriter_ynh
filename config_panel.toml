@@ -14,27 +14,19 @@ services = ["__APP__"]
         [main.config.is_free]
         ask = "This determines whether there is a star labeled **Free** on the login page?"
         type = "boolean"
-        yes = "1"
-        no = "0"
         bind = "is_free:/var/www/__APP__/fiduswriter/configuration.py"
 
         [main.config.registration_open]
         ask = "Allow new user registration"
         type = "boolean"
-        yes = "1"
-        no = "0"
         bind = "registration_open:/var/www/__APP__/fiduswriter/configuration.py"
 
         [main.config.password_login]
         ask = "Enable password-based login"
         type = "boolean"
-        yes = "1"
-        no = "0"
         bind = "password_login:/var/www/__APP__/fiduswriter/configuration.py"
 
         [main.config.socialaccount_open]
         ask = "Enable social account login"
         type = "boolean"
-        yes = "1"
-        no = "0"
-        bind = "registration_open:/var/www/__APP__/fiduswriter/configuration.py"
+        bind = "socialaccount_open:/var/www/__APP__/fiduswriter/configuration.py"
