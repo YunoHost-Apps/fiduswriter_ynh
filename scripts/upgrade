@@ -59,6 +59,9 @@ pushd $install_dir
     python manage.py migrate
     python manage.py transpile
     python manage.py collectstatic --noinput
+    cd ..
+    cp fiduswriter/static-transpile/js/schema_export.js static-transpile/js/schema_export.js
+    cp fiduswriter/static-libs/json/schema.json static-libs/json/schema.json
     deactivate
 popd
 
