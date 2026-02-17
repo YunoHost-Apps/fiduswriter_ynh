@@ -7,17 +7,20 @@ User=__APP__
 Group=www-data
 WorkingDirectory=__INSTALL_DIR__
 Environment="PATH=__INSTALL_DIR__/.venv/bin:/usr/local/bin:/usr/bin:/bin"
+
+LogsDirectory=__APP__
+
 ExecStart=__INSTALL_DIR__/.venv/bin/gunicorn \
-    --access-logfile - \
+    --access-logfile /var/log/__APP__/gunicorn.log \
+    --error-logfile /var/log/__APP__/gunicorn-error.log \
+    --capture-output \
+    --log-level debug \
     --workers 3 \
     --worker-class uvicorn.workers.UvicornWorker \
     --worker-connections 1000 \
     --timeout 120 \
     --bind unix:__INSTALL_DIR__/gunicorn.sock \
     fiduswriter.asgi:application
-
-StandardOutput=append:/var/log/__APP__.log
-StandardError=append:/var/log/__APP__-error.log
 
 ### Depending on specificities of your service/app, you may need to tweak these
 ### .. but this should be a good baseline
