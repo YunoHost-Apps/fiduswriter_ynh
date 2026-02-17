@@ -59,16 +59,15 @@ pushd $install_dir
     echo "source $install_dir/.venv/bin/activate" >> $install_dir/.bashrc
     source $install_dir/.venv/bin/activate
     ynh_hide_warnings uv pip install --upgrade pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap
-    cd fiduswriter
-    ynh_hide_warnings uv pip install -r requirements.txt
-    ynh_hide_warnings uv pip install -r postgresql-requirements.txt
+    ynh_hide_warnings uv pip install -r fiduswriter/requirements.txt
+    ynh_hide_warnings uv pip install -r fiduswriter/postgresql-requirements.txt
     mkdir static-libs
     mkdir static-transpile
-    python manage.py migrate
-    python manage.py transpile
-    python manage.py collectstatic --noinput
-    DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
-    python manage.py setup
+    python fiduswriter/manage.py migrate
+    python fiduswriter/manage.py transpile
+    python fiduswriter/manage.py collectstatic --noinput
+    DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python fiduswriter/manage.py createsuperuser --noinput
+    python fiduswriter/manage.py setup
     deactivate
 popd
 
