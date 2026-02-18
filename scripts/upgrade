@@ -52,16 +52,16 @@ ynh_script_progression "Updating $app's dependencies..."
 
 pushd $install_dir
     source .venv/bin/activate
+    mkdir -p static-transpile/js
+    mkdir -p static-libs/json
     cd fiduswriter
     ynh_hide_warnings uv pip install -r requirements.txt
     ynh_hide_warnings uv pip install -r postgresql-requirements.txt
     ynh_hide_warnings uv pip install -U pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap
-    python manage.py migrate
-    python manage.py transpile
-    python manage.py collectstatic --noinput
+    ynh_hide_warnings python manage.py migrate
+    ynh_hide_warnings python manage.py transpile
+    ynh_hide_warnings python manage.py collectstatic --noinput
     cd ..
-    mkdir -p static-transpile/js
-    mkdir -p static-libs/json
     cp fiduswriter/static-transpile/js/schema_export.js static-transpile/js/schema_export.js
     cp fiduswriter/static-libs/json/schema.json static-libs/json/schema.json
     deactivate
