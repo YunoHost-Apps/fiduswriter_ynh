@@ -79,6 +79,8 @@ popd
 
 chown -R "$app:www-data" "$install_dir"
 chown -R "$app:www-data" "$data_dir"
+chmod -R 775 "$install_dir"
+chmod -R 664 "$data_dir"
 
 #=================================================
 # SYSTEM CONFIGURATION
