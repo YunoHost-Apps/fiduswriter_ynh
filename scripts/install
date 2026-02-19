@@ -66,7 +66,7 @@ pushd $install_dir
     mkdir -p fiduswriter/static-libs/json
     mkdir -p static-transpile/js
     mkdir -p static-libs/json
-    echo "/var/www/$install_dir/.venv/lib/python3.13/site-packages/fiduswriter" > /var/www/$install_dir/.venv/lib/python3.13/site-packages/fiduswriter_plugins.pth
+    echo "$install_dir/.venv/lib/python3.13/site-packages/fiduswriter" > $install_dir/.venv/lib/python3.13/site-packages/fiduswriter_plugins.pth
     cd fiduswriter
     ynh_hide_warnings python manage.py migrate
     ynh_hide_warnings python manage.py transpile
