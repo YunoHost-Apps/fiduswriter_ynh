@@ -55,6 +55,7 @@ pushd $install_dir
     mkdir -p static-transpile/js
     mkdir -p static-libs/json
     cd fiduswriter
+    pip install -U fiduswriter[books,citation-api-import,languagetool,ojs,pandoc,gitrepo-export,phplist,payment-paddle,website]==$(ynh_app_upstream_version)
     ynh_hide_warnings uv pip install -r requirements.txt
     ynh_hide_warnings uv pip install -r postgresql-requirements.txt
     ynh_hide_warnings uv pip install -U pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap

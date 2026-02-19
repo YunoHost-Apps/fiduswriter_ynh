@@ -131,6 +131,16 @@ SERVER_EMAIL = "__APP__@__DOMAIN__"
 
 
 INSTALLED_APPS = [
+    "book",
+    "citation_api_import",
+    "pandoc",
+    # "pandoc_on_server",
+    # "gitrepo_export",
+    # "languagetool",
+    "ojs",
+    # "phplist",
+    # "payment",
+    #"website"
     # If you want to enable one or several of the social network login options
     # below, make sure you add the authorization keys at:
     # http://SERVER.COM/admin/socialaccount/socialapp/

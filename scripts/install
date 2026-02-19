@@ -59,12 +59,14 @@ pushd $install_dir
     echo "source $install_dir/.venv/bin/activate" >> $install_dir/.bashrc
     source $install_dir/.venv/bin/activate
     ynh_hide_warnings uv pip install --upgrade pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap
+    pip install fiduswriter[books,citation-api-import,languagetool,ojs,pandoc,gitrepo-export,phplist,payment-paddle,website]==$(ynh_app_upstream_version)
     ynh_hide_warnings uv pip install -r fiduswriter/requirements.txt
     ynh_hide_warnings uv pip install -r fiduswriter/postgresql-requirements.txt
     mkdir -p fiduswriter/static-transpile/js
     mkdir -p fiduswriter/static-libs/json
     mkdir -p static-transpile/js
     mkdir -p static-libs/json
+    echo "$install_dir/.venv/lib/python3.13/site-packages/fiduswriter" > $install_dir/.venv/lib/python3.13/site-packages/fiduswriter_plugins.pth
     cd fiduswriter
     ynh_hide_warnings python manage.py migrate
     ynh_hide_warnings python manage.py transpile
@@ -79,6 +81,8 @@ popd
 
 chown -R "$app:www-data" "$install_dir"
 chown -R "$app:www-data" "$data_dir"
+chmod -R 770 "$install_dir"
+chmod -R 660 "$data_dir"
 
 #=================================================
 # SYSTEM CONFIGURATION
