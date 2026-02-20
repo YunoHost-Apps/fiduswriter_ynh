@@ -23,6 +23,8 @@ ynh_app_setting_set --key=timezone --value=$timezone
 redis_db=$(ynh_redis_get_free_db)
 ynh_app_setting_set --app=$app --key=redis_db --value=$redis_db
 
+python_version=3.14
+
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
@@ -55,7 +57,7 @@ ynh_script_progression "Preparing UV..."
 ynh_script_progression "Installing $app's dependencies..."
 
 pushd $install_dir
-    ynh_hide_warnings uv venv "$install_dir/.venv" --python 3.13
+    ynh_hide_warnings uv venv "$install_dir/.venv" --python $python_version
     echo "source $install_dir/.venv/bin/activate" >> $install_dir/.bashrc
     source $install_dir/.venv/bin/activate
     ynh_hide_warnings uv pip install --upgrade pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap
@@ -66,7 +68,7 @@ pushd $install_dir
     mkdir -p fiduswriter/static-libs/json
     mkdir -p static-transpile/js
     mkdir -p static-libs/json
-    echo "$install_dir/.venv/lib/python3.13/site-packages/fiduswriter" > $install_dir/.venv/lib/python3.13/site-packages/fiduswriter_plugins.pth
+    echo "$install_dir/.venv/lib/python$python_version/site-packages/fiduswriter" > $install_dir/.venv/lib/python$python_version/site-packages/fiduswriter_plugins.pth
     cd fiduswriter
     ynh_hide_warnings python manage.py migrate
     ynh_hide_warnings python manage.py transpile
