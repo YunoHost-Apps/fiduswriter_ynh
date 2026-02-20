@@ -55,7 +55,7 @@ ynh_script_progression "Preparing UV..."
 ynh_script_progression "Installing $app's dependencies..."
 
 pushd $install_dir
-    ynh_hide_warnings uv venv "$install_dir/.venv" --python 3.13
+    ynh_hide_warnings uv venv "$install_dir/.venv" --python 3.14
     echo "source $install_dir/.venv/bin/activate" >> $install_dir/.bashrc
     source $install_dir/.venv/bin/activate
     ynh_hide_warnings uv pip install --upgrade pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap
