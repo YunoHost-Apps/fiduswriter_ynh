@@ -68,6 +68,11 @@ pushd $install_dir
     deactivate
 popd
 
+chown -R "$app:www-data" "$install_dir"
+chown -R "$app:www-data" "$data_dir"
+chmod -R 770 "$install_dir"
+chmod -R 660 "$data_dir"
+
 #=================================================
 # REAPPLY SYSTEM CONFIGURATION
 #=================================================
