@@ -7,7 +7,7 @@ name = "Fidus Writer"
 description.en = "an online collaborative editor for academics"
 description.fr = "un éditeur collaboratif en ligne pour les universitaires"
 
-version = "4.0.18~ynh3"
+version = "4.0.18~ynh4"
 
 maintainers = ["DeMiro5001"]
 
