@@ -3,6 +3,18 @@ import ldap
 from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
 import django.core.mail.backends.smtp
 
+# Fix ldap asyc issue
+from asgiref.sync import sync_to_async
+try:
+    from django_auth_ldap.backend import LDAPBackend
+    if not hasattr(LDAPBackend, 'aget_user'):
+        async def aget_user(self, user_id):
+            return await sync_to_async(self.get_user)(user_id)
+        LDAPBackend.aget_user = aget_user
+except ImportError:
+    pass
+# End fix
+
 #############################################
 # Django settings for Fidus Writer project. #
 #############################################
