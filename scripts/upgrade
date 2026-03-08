@@ -57,8 +57,9 @@ pushd $install_dir
     cd fiduswriter
     pip install -U fiduswriter[books,citation-api-import,languagetool,ojs,pandoc,gitrepo-export,phplist,payment-paddle,website]==$(ynh_app_upstream_version)
     ynh_hide_warnings uv pip install -r requirements.txt
-    ynh_hide_warnings uv pip install -r postgresql-requirements.txt
-    ynh_hide_warnings uv pip install -U pip setuptools wheel gunicorn uvicorn psycopg django_redis django-auth-ldap
+    # commenting for now
+    #ynh_hide_warnings uv pip install -r postgresql-requirements.txt
+    ynh_hide_warnings uv pip install -U pip setuptools wheel gunicorn uvicorn django_redis django-auth-ldap psycopg2==2.9.11
     ynh_hide_warnings python manage.py migrate
     ynh_hide_warnings python manage.py transpile
     ynh_hide_warnings python manage.py collectstatic --noinput
