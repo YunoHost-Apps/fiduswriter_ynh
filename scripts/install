@@ -74,7 +74,7 @@ pushd $install_dir
     ynh_hide_warnings python manage.py migrate
     ynh_hide_warnings python manage.py transpile
     ynh_hide_warnings python manage.py collectstatic --noinput
-    DJANGO_SUPERUSER_USERNAME=$admin DJANGO_SUPERUSER_EMAIL=$admin_mail DJANGO_SUPERUSER_PASSWORD=$password python manage.py createsuperuser --noinput
+    python manage.py createsuperuser --noinput --username $admin --email $admin_mail --password $password
     ynh_hide_warnings python manage.py setup
     cd ..
     cp fiduswriter/static-transpile/js/schema_export.js static-transpile/js/schema_export.js
