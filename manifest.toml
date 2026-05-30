@@ -7,7 +7,7 @@ name = "Fidus Writer"
 description.en = "an online collaborative editor for academics"
 description.fr = "un éditeur collaboratif en ligne pour les universitaires"
 
-version = "4.0.19~ynh7"
+version = "4.1.0~ynh1"
 
 maintainers = ["DeMiro5001"]
 
@@ -75,8 +75,8 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/fiduswriter/fiduswriter/archive/refs/tags/v4.0.19.tar.gz"
-    sha256 = "0db3009a56f58d6341a1429b175da58b09acba33eb0f5d56f6d01a098c70c1d8"
+    url = "https://github.com/fiduswriter/fiduswriter/archive/refs/tags/v4.1.0.tar.gz"
+    sha256 = "f1577fa0ce2d6fbd4835eda8fac4d21fbad32182eae3fd18dfc6ba00d8d8a3ab"
     in_subdir = true
 
     autoupdate.strategy = "latest_github_tag"
