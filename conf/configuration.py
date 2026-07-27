@@ -15,6 +15,9 @@ except ImportError:
     pass
 # End fix
 
+# allauth to trust 1 proxy hop (Nginx):
+ALLAUTH_TRUSTED_PROXY_COUNT = 1
+
 #############################################
 # Django settings for Fidus Writer project. #
 #############################################
@@ -380,3 +383,22 @@ LANGUAGES = [
 LOCALE_PATHS = [
     '__INSTALL_DIR__/fiduswriter/locale',
 ]
+
+# Enable logging (I will probably remove it, but this helped me debug)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.security.csrf': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
+# End logging
