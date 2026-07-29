@@ -63,10 +63,10 @@ pushd $install_dir
     ynh_hide_warnings python manage.py migrate
     ynh_hide_warnings python manage.py transpile
     ynh_hide_warnings python manage.py collectstatic --noinput
+    python manage.py shell -c "from django.contrib.sites.models import Site; Site.objects.filter(id=1, domain='example.com').update(domain='$domain', name='My Fiduswriter in Yunohost')"
     cd ..
     cp fiduswriter/static-transpile/js/schema_export.js static-transpile/js/schema_export.js
     cp fiduswriter/static-libs/json/schema.json static-libs/json/schema.json
-    python manage.py shell -c "from django.contrib.sites.models import Site; Site.objects.filter(id=1, domain='example.com').update(domain='$domain', name='My Fiduswriter in Yunohost')"
     deactivate
 popd
 
