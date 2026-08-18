@@ -27,7 +27,7 @@ ynh_app_setting_set_default --key=php_post_max_size --value=50M
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".venv .uv .uv_cache .python_runtime "
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".bashrc .uv .uv_cache .python_runtime "
 chown -R "$app:www-data" "$install_dir"
 
 #=================================================
@@ -50,12 +50,15 @@ ynh_script_progression "Upgrading uv..."
 
 ynh_script_progression "Updating $app's dependencies..."
 
+python_version=3.13
+
 pushd $install_dir
+    ynh_hide_warnings uv venv "$install_dir/.venv" --python $python_version
     source .venv/bin/activate
     mkdir -p static-transpile/js
     mkdir -p static-libs/json
     cd fiduswriter
-    pip install -U fiduswriter[books,citation-api-import,languagetool,ojs,pandoc,gitrepo-export,phplist,payment-paddle,website]==$(ynh_app_upstream_version)
+    pip install fiduswriter[books,citation-api-import,languagetool,ojs,pandoc,gitrepo-export,phplist,payment-paddle,website]==$(ynh_app_upstream_version)
     ynh_hide_warnings uv pip install -r requirements.txt
     # commenting for now
     #ynh_hide_warnings uv pip install -r postgresql-requirements.txt
