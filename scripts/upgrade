@@ -6,6 +6,7 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
+python_version=3.15
 
 #=================================================
 # STOP SYSTEMD SERVICE
@@ -27,7 +28,7 @@ ynh_app_setting_set_default --key=php_post_max_size --value=50M
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".venv .uv .uv_cache .python_runtime "
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".uv .uv_cache .python_runtime "
 chown -R "$app:www-data" "$install_dir"
 
 #=================================================
@@ -51,6 +52,7 @@ ynh_script_progression "Upgrading uv..."
 ynh_script_progression "Updating $app's dependencies..."
 
 pushd $install_dir
+    ynh_hide_warnings uv venv "$install_dir/.venv" --python $python_version
     source .venv/bin/activate
     mkdir -p static-transpile/js
     mkdir -p static-libs/json
