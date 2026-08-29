@@ -61,7 +61,7 @@ pushd $install_dir
     echo "source $install_dir/.venv/bin/activate" >> $install_dir/.bashrc
     source $install_dir/.venv/bin/activate
     ynh_hide_warnings uv pip install --upgrade pip setuptools wheel gunicorn uvicorn django_redis django-auth-ldap psycopg2==2.9.11
-    pip install fiduswriter[books,citation-api-import,languagetool,ojs,pandoc,gitrepo-export,phplist,payment-paddle,website]==$(ynh_app_upstream_version)
+    ynh_hide_warnings uv pip install fiduswriter[books,citation-api-import,languagetool,ojs,pandoc,gitrepo-export,phplist,payment-paddle,website]==$(ynh_app_upstream_version)
     ynh_hide_warnings uv pip install -r fiduswriter/requirements.txt
     # commenting this for now
     #ynh_hide_warnings uv pip install -r fiduswriter/postgresql-requirements.txt
