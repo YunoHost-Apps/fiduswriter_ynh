@@ -6,7 +6,7 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
-python_version=3.15
+python_version=3.13
 
 #=================================================
 # STOP SYSTEMD SERVICE
@@ -57,7 +57,6 @@ pushd $install_dir
     mkdir -p static-transpile/js
     mkdir -p static-libs/json
     cd fiduswriter
-    ynh_hide_warnings uv pip install -U pip
     ynh_hide_warnings uv pip install -U fiduswriter[books,citation-api-import,languagetool,ojs,pandoc,gitrepo-export,phplist,payment-paddle,website]==$(ynh_app_upstream_version)
     ynh_hide_warnings uv pip install -r requirements.txt
     # commenting for now
