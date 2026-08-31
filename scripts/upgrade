@@ -6,7 +6,6 @@
 
 source _common.sh
 source /usr/share/yunohost/helpers
-python_version=3.13
 
 #=================================================
 # STOP SYSTEMD SERVICE
@@ -28,7 +27,11 @@ ynh_app_setting_set_default --key=php_post_max_size --value=50M
 #=================================================
 ynh_script_progression "Upgrading source files..."
 
-ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".uv .uv_cache .python_runtime "
+# Download, check integrity, uncompress and patch the source from manifest.toml
+ynh_setup_source --dest_dir="$install_dir" --full_replace --keep=".uv .uv_cache .python_runtime"
+ynh_setup_source --dest_dir="$install_dir/.uv" --source_id="uv"
+
+chmod +x "$install_dir/.uv/uv"
 chown -R "$app:www-data" "$install_dir"
 
 #=================================================
@@ -42,9 +45,6 @@ chmod 400 "$install_dir/fiduswriter/configuration.py"
 chown "$app:$app" "$install_dir/fiduswriter/configuration.py"
 
 ynh_script_progression "Upgrading uv..."
-
-    ynh_setup_source --dest_dir="$install_dir/.uv" --source_id="uv"
-    chmod +x "$install_dir/.uv/uv"
     export PATH="$install_dir/.uv:$PATH"
     export UV_PYTHON_INSTALL_DIR="$install_dir/.python_runtime"
     export UV_CACHE_DIR="$install_dir/.uv_cache"
@@ -53,19 +53,23 @@ ynh_script_progression "Updating $app's dependencies..."
 
 pushd $install_dir
     ynh_hide_warnings uv venv "$install_dir/.venv" --python $python_version
-    source .venv/bin/activate
+    source $install_dir/.venv/bin/activate
+    ynh_hide_warnings uv pip install --upgrade pip setuptools wheel gunicorn uvicorn django_redis django-auth-ldap psycopg2==2.9.11
+    ynh_hide_warnings uv pip install fiduswriter[books,citation-api-import,languagetool,ojs,pandoc,gitrepo-export,phplist,payment-paddle,website]==$(ynh_app_upstream_version)
+    ynh_hide_warnings uv pip install -r fiduswriter/requirements.txt
+    # commenting this for now
+    #ynh_hide_warnings uv pip install -r fiduswriter/postgresql-requirements.txt
+    mkdir -p fiduswriter/static-transpile/js
+    mkdir -p fiduswriter/static-libs/json
     mkdir -p static-transpile/js
     mkdir -p static-libs/json
+    echo "$install_dir/.venv/lib/python$python_version/site-packages/fiduswriter" > $install_dir/.venv/lib/python$python_version/site-packages/fiduswriter_plugins.pth
     cd fiduswriter
-    ynh_hide_warnings uv pip install -U fiduswriter[books,citation-api-import,languagetool,ojs,pandoc,gitrepo-export,phplist,payment-paddle,website]==$(ynh_app_upstream_version)
-    ynh_hide_warnings uv pip install -r requirements.txt
-    # commenting for now
-    #ynh_hide_warnings uv pip install -r postgresql-requirements.txt
-    ynh_hide_warnings uv pip install -U pip setuptools wheel gunicorn uvicorn django_redis django-auth-ldap psycopg2==2.9.11
     ynh_hide_warnings python manage.py migrate
     ynh_hide_warnings python manage.py transpile
     ynh_hide_warnings python manage.py collectstatic --noinput
-    python manage.py shell -c "from django.contrib.sites.models import Site; Site.objects.filter(id=1, domain='example.com').update(domain='$domain', name='My Fiduswriter in Yunohost')"
+
+    python manage.py shell -c "from django.contrib.sites.models import Site; Site.objects.filter(id=1).update(domain='$domain', name='My Fiduswriter in Yunohost')"
     cd ..
     cp fiduswriter/static-transpile/js/schema_export.js static-transpile/js/schema_export.js
     cp fiduswriter/static-libs/json/schema.json static-libs/json/schema.json
