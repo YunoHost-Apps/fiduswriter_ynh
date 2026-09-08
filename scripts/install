@@ -72,6 +72,8 @@ pushd $install_dir
     echo "$install_dir/.venv/lib/python$python_version/site-packages/fiduswriter" > $install_dir/.venv/lib/python$python_version/site-packages/fiduswriter_plugins.pth
     cd fiduswriter
     ynh_hide_warnings python manage.py migrate
+    
+    export NPM_CONFIG_ONLY_BUILT_DEPENDENCIES="core-js-pure"
     ynh_hide_warnings python manage.py transpile
     ynh_hide_warnings python manage.py collectstatic --noinput
     python manage.py createsuperuser --noinput --username $admin --email $admin_mail --password $password
