@@ -7,7 +7,7 @@ name = "Fidus Writer"
 description.en = "an online collaborative editor for academics"
 description.fr = "un éditeur collaboratif en ligne pour les universitaires"
 
-version = "4.1.21~ynh3"
+version = "4.1.23~ynh1"
 
 maintainers = ["DeMiro5001"]
 
@@ -75,21 +75,21 @@ ram.runtime = "50M"
     [resources.sources]
 
     [resources.sources.main]
-    url = "https://github.com/fiduswriter/fiduswriter/archive/refs/tags/v4.1.21.tar.gz"
-    sha256 = "5d79ffbf2fd19ce77061738d7564238e3d1b6ebaaefabea0c2600c5bbcfaea46"
+    url = "https://github.com/fiduswriter/fiduswriter/archive/refs/tags/v4.1.23.tar.gz"
+    sha256 = "32d187dbdee2ca8fcfb614614f3ed5a881592e50eb79675e80797272af0a40f1"
     in_subdir = true
 
     autoupdate.strategy = "latest_github_tag"
 
     [resources.sources.uv]
-    amd64.url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-unknown-linux-gnu.tar.gz"
-    amd64.sha256 = "9167d72b3319674b6303c4cbe071854bba13ebdf3d76b1a7cbdc175471fb66d6"
-    arm64.url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-aarch64-unknown-linux-gnu.tar.gz"
-    arm64.sha256 = "6524bd338177ed50d035d39354e12545e993bbeba2ecbddf0480c5b3a81d313f"
-    armhf.url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-armv7-unknown-linux-gnueabihf.tar.gz"
-    armhf.sha256 = "4d568920e1f60c4b881cbe2827dfa20592a9a9721f69b57d47650d035c4fe8f6"
-    i386.url = "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-i686-unknown-linux-gnu.tar.gz"
-    i386.sha256 = "52c93c40f6056c4d0e1e259acd60c11f7328416a4f28c85e5f1b04430538aeaa"
+    amd64.url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-x86_64-unknown-linux-gnu.tar.gz"
+    amd64.sha256 = "2b428396f12572d4429cf210ca234dd599a33b3af0958a4d5ed569d63e3f344f"
+    arm64.url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-aarch64-unknown-linux-gnu.tar.gz"
+    arm64.sha256 = "1ae72b4718729e2ccc4f1ae2c6d1e531ca8467800e0546e9130b3886023a60ab"
+    armhf.url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-armv7-unknown-linux-gnueabihf.tar.gz"
+    armhf.sha256 = "9e52201e4502e349f27020879283736ca184185363ec8328554fd26596e61eb8"
+    i386.url = "https://github.com/astral-sh/uv/releases/download/0.13.4/uv-i686-unknown-linux-gnu.tar.gz"
+    i386.sha256 = "8c72700f224979886ab41003a46cbac5a8ba070ff5857717026a3b4b144c5686"
     
     in_subdir = true
     
