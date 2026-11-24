@@ -7,7 +7,7 @@ name = "Fidus Writer"
 description.en = "an online collaborative editor for academics"
 description.fr = "un éditeur collaboratif en ligne pour les universitaires"
 
-version = "4.1.23~ynh3"
+version = "4.1.23~ynh4"
 
 maintainers = ["DeMiro5001"]
 
@@ -82,14 +82,14 @@ ram.runtime = "50M"
     autoupdate.strategy = "latest_github_tag"
 
     [resources.sources.uv]
-    amd64.url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-x86_64-unknown-linux-gnu.tar.gz"
-    amd64.sha256 = "f29c3e94ffabd7e6f3ba521dba169a9b7ec12100bf3257087f0f24f6123f3645"
-    arm64.url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-aarch64-unknown-linux-gnu.tar.gz"
-    arm64.sha256 = "229e194255c7958d86d56e8790d969a6f74736592133f0dfd0076f754c642c1d"
-    armhf.url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-armv7-unknown-linux-gnueabihf.tar.gz"
-    armhf.sha256 = "d00cd4949c4524c934afcfee1aedfa9d337cf4e43be4d6b692ad8d74d0a65562"
-    i386.url = "https://github.com/astral-sh/uv/releases/download/0.13.6/uv-i686-unknown-linux-gnu.tar.gz"
-    i386.sha256 = "665ea831c38d342900950e606beb2ccc37b7ba0fcefc37b814eb4b076305f2b6"
+    amd64.url = "https://github.com/astral-sh/uv/releases/download/0.13.10/uv-x86_64-unknown-linux-gnu.tar.gz"
+    amd64.sha256 = "bf65ac1a0af10f92c522d91ac096c7c0a39657647b155577e7836c2cbbb4526c"
+    arm64.url = "https://github.com/astral-sh/uv/releases/download/0.13.10/uv-aarch64-unknown-linux-gnu.tar.gz"
+    arm64.sha256 = "14590f644805a6234ffe071154340669e38137f38e60aa9629690119704107d2"
+    armhf.url = "https://github.com/astral-sh/uv/releases/download/0.13.10/uv-armv7-unknown-linux-gnueabihf.tar.gz"
+    armhf.sha256 = "ab7a68a76962f7403fe66418c4a005e0b17d822518f7fea9d3c1bd036e8f530f"
+    i386.url = "https://github.com/astral-sh/uv/releases/download/0.13.10/uv-i686-unknown-linux-gnu.tar.gz"
+    i386.sha256 = "621ae75ab65facd2c6eec13b73173f726a0aa1ddc8133b4047d1423a6c33e55c"
     
     in_subdir = true
     
